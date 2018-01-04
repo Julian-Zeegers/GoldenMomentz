@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light wotif-nav-bg mb-2 box-shadow">
+    <!-- 
+      Brand
+    -->
+    <a class="navbar-brand wotif-brand" routerLink="dashboard">
+      <img class="logo" src="../../assets/wot-if-logo.png" />
+    </a>
+    
+    <!-- 
+      Menu button when the menu is collapsed
+    -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <!-- 
+      Primary navbar items
+    -->
+    <div class="collapse navbar-collapse" id="navbar">
+      
+      <span class="mr-auto">
+        <ul class="navbar-nav" *ngIf="!isAuthenticated()">
+          <li class="nav-item dropdown" [routerLinkActive]="['active']">
+            <a class="nav-link dropdown-toggle clickable" id="peopleDropdown" role="button" data-toggle="dropdown">
+              <i class="fa fa-map heading"></i>Diepsloot
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="people" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-users heading"></i>People</a>
+              <a class="dropdown-item" routerLink="talents" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-paint-brush heading"></i>Talents</a>
+              <a class="dropdown-item" routerLink="extensions" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-map-signs heading"></i>Extensions</a>
+              <a class="dropdown-item" routerLink="problems" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-exclamation-circle heading"></i>Extension Problems</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown" [routerLinkActive]="['active']">
+            <a class="nav-link dropdown-toggle clickable" id="programDropdown" role="button" data-toggle="dropdown">
+              <i class="fa fa-handshake-o heading"></i>Support
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="programs" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-object-group heading"></i>Programs</a>
+              <a class="dropdown-item" routerLink="projects" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-object-ungroup heading"></i>Projects</a>
+              <a class="dropdown-item" routerLink="organisations" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-building heading"></i>Organisations</a>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown" [routerLinkActive]="['active']">
+            <a class="nav-link dropdown-toggle clickable" id="surveyDropdown" role="button" data-toggle="dropdown">
+              <i class="fa fa-wrench heading"></i>Tools
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="surveys" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-file-text-o heading"></i>Surveys</a>
+            </div>
+          </li>
+        </ul>
+      </span>
+      
+      <!-- 
+        Secondary items
+      -->
+      <ul class="navbar-nav">
+          <li class="nav-item dropdown" [routerLinkActive]="['active']" *ngIf="isAuthenticated()">
+            <a class="nav-link dropdown-toggle clickable" id="managementDropdown" role="button" data-toggle="dropdown">
+                <i class="fa fa-cog heading"></i>Management
+            </a>
+            <div class="dropdown-menu">
+                <!-- Never really knew what admin was anyway. Need to look into it
+              <a class="dropdown-item" routerLink="admin" [routerLinkActive]="['active']">Admin</a>
+                -->
+              <a class="dropdown-item" routerLink="users" [routerLinkActive]="['active']">Users</a>
+            </div>
+          </li>
+
+        <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!isAuthenticated()"><a class="nav-link" routerLink="login"><i class="fa fa-sign-in heading"></i>Login</a></li>
+        <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!isAuthenticated()"><a class="nav-link" routerLink="register"><i class="fa fa-address-book heading"></i>Register</a></li>
+        <li class="nav-item" [routerLinkActive]="['active']" *ngIf="isAuthenticated()"><a class="nav-link" routerLink="login" (click)="logout()"><i class="fa fa-sign-out heading"></i>Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+

@@ -1,0 +1,181 @@
+<div class="ui-g-12">
+    <p-fieldset>
+        <p-header><i class="fa fa-file-text-o heading"></i>{{state}} Person</p-header>
+
+        <div class="ui-g-8">
+            <div class="ui-g-1">
+            </div>
+            <div class="ui-g-11">
+                <div class="row mt-10">
+                    <div class="ui-g">
+                        <div class="ui-float-label">
+                            <input id="name" [(ngModel)]="model.name" type="text" pInputText>
+                            <label for="name">Name</label>
+                        </div>
+                    </div>
+                    <div class="ui-g-1">
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-float-label">
+                            <input id="surname" [(ngModel)]="model.surname" type="text" pInputText>
+                            <label for="surname">Surname</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-20">
+                    <div class="ui-g">
+                        <div class="ui-float-label">
+                            <input id="username" [(ngModel)]="model.username" type="text" pInputText>
+                            <label for="username">Username</label>
+                        </div>
+                    </div>
+                    <div class="ui-g-1">
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-float-label">
+                            <input id="idNumber" [(ngModel)]="model.idNumber" type="text" pInputText>
+                            <label for="idNumber">ID Number</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="ui-g">
+                        <div class="form-group">
+                            <div>
+                                <span class="prime-txt">Gender</span>
+                            </div>
+                            <div>
+                                <p-dropdown class="wotif-dropdown" id="genders" [options]="genders" [(ngModel)]="selectedGender" optionLabel="description"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-g-1">
+                    </div>
+                    <div class="ui-g">
+                        <div class="form-group">
+                            <div>
+                                <span class="prime-txt">Race</span>
+                            </div>
+                            <div>
+                                <p-dropdown class="wotif-dropdown" id="races" [options]="races" [(ngModel)]="selectedRace" optionLabel="description"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="ui-g">
+                        <div class="form-group">
+                            <div>
+                                <span class="prime-txt">Nationality</span>
+                            </div>
+                            <div>
+                                <p-dropdown class="wotif-dropdown" id="nationalities" [options]="nationalities" [(ngModel)]="selectedNationality" optionLabel="description"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-g-1">
+                    </div>
+                    <div class="ui-g">
+                        <div class="form-group">
+                            <div>
+                                <span class="prime-txt">Extension</span>
+                            </div>
+                            <div>
+                                <p-dropdown class="wotif-dropdown" id="extensions" [options]="extensions" [(ngModel)]="selectedExtension" optionLabel="name"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+               <!-- <div class="row">
+                    <div class="form-group">
+                        <div>
+                            <span class="prime-txt">Talents</span>
+                        </div>
+                        <div>
+                            <p-dropdown class="wotif-dropdown" id="skills" [options]="skills" [(ngModel)]="selectedSkill" optionLabel="name"></p-dropdown>
+                            <i (click)="addSkill()" class="fa fa-plus clickable"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-10" *ngIf="selectedSkills.length > 0">
+                    <p-dataList [value]="selectedSkills">
+                        <p-header>
+                            Selected talents
+                        </p-header>
+                        <ng-template let-skill let-idx="index" pTemplate="item">
+                            <div class="ui-g ui-fluid">
+                                {{skill.name}} <i (click)="removeSkill(idx)" class="fa fa-trash danger clickable ml-1 mt-1"></i>
+                            </div>
+                        </ng-template>
+                    </p-dataList>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <div>
+                            <span class="prime-txt">Organisations</span>
+                        </div>
+                        <div>
+                            <p-dropdown class="wotif-dropdown" id="organisations" [options]="organisations" [(ngModel)]="selectedOrganisation" optionLabel="name"></p-dropdown>
+                            <i (click)="addOrganisation()" class="fa fa-plus clickable"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-10" *ngIf="selectedOrganisations.length > 0">
+                    <p-dataList [value]="selectedOrganisations">
+                        <p-header>
+                            Selected organisations
+                        </p-header>
+                        <ng-template let-organisation let-idx="index" pTemplate="item">
+                            <div class="ui-g ui-fluid">
+                                {{organisation.name}} <i (click)="removeOrganisation(idx)" class="fa fa-trash danger clickable ml-1 mt-1"></i>
+                            </div>
+                        </ng-template>
+                    </p-dataList>
+                </div> -->
+
+                <div class="row">
+                    <div class="form-group">
+                        <div>
+                            <span class="prime-txt">Skills</span>
+                        </div>
+                        <div>
+                            <span class="ui-fluid">
+                            <p-autoComplete [(ngModel)]="selectedSkills" [suggestions]="SkillResults" (completeMethod)="filterSkillMultiple($event)" [multiple]="true" field="name" styleClass="wid100" [dropdown]="true"></p-autoComplete>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div>
+                            <span class="prime-txt">Organisations</span>
+                        </div>
+                        <div>
+                            <span class="ui-fluid">
+                            <p-autoComplete [(ngModel)]="selectedOrganisations" [suggestions]="OrgResults" (completeMethod)="filterOrganisationMultiple($event)" [multiple]="true" field="name" styleClass="wid100" [dropdown]="true"></p-autoComplete>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row mt-20">
+                    <button label="Cancel" (click)="cancel()" class="ui-button-warning" icon="fa-close" iconPos="right" type="button" pButton></button>
+                    <button label="Create" *ngIf="!updating" (click)="create()" class="ui-button-success" icon="fa-check" iconPos="right" type="button" pButton></button>
+                    <button label="Update" *ngIf="updating" (click)="update()" class="ui-button-success" icon="fa-check" iconPos="right" type="button" pButton></button>
+                </div>
+            </div>
+        </div>
+    </p-fieldset>
+</div>
+
+
+

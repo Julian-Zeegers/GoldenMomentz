@@ -1,0 +1,11 @@
+.site-footer {
+    position:fixed;
+    bottom:0;
+    right:15px;
+    width:150px;
+    height:80px;   /* Height of the footer */
+    float: right;
+    font-size:20;
+    color:black;
+    text-align: right;
+}

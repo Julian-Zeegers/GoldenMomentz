@@ -7,9 +7,11 @@ using GoldenMomentz.Models;
 using System.Web.Http;
 using GoldenMomentz.Dtos;
 using System.Data.Entity;
+using System.Web.Http.Cors;
 
 namespace GoldenMomentz.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CustomersController : ApiController
     {
         private ApplicationDbContext _context;

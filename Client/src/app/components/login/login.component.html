@@ -1,0 +1,23 @@
+<div class="card card-container">
+  <h1 align="center">Login</h1>
+  <br>
+  <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+  <p id="profile-name" class="profile-name-card"></p>
+
+    <span id="reauth-email" class="reauth-email"></span>
+    <div class="form-group">
+      <span class="ui-float-label">
+        <input id="username" [(ngModel)]="loginUser.username" type="text" size="33" pInputText required autofocus>
+        <label for="username">Username</label>
+      </span>
+    </div>
+    <div class="form-group mt-2">
+      <span class="ui-float-label">
+          <input id="password" [(ngModel)]="loginUser.password" type="password" size="33"  autocomplete="new-password" pInputText required>
+          <label for="password">Password</label>
+      </span>
+    </div>
+    <div class="wrapper">
+        <button label="Confirm" (click)="submit()" class="ui-button-success" icon="fa-sign-in " iconPos="right" type="button" align="right" pButton></button>
+    </div>
+</div>

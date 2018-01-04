@@ -1,0 +1,6 @@
+This module is only for components/services that web app needs and can't work without.
+
+Thinks like:
+Top level container component
+App loader component
+Auth services

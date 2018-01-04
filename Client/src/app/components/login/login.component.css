@@ -1,0 +1,119 @@
+/*
+ * General styles
+ */
+body, html {
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.card-container.card {
+    max-width: 350px;
+    padding: 40px 40px;
+}
+
+.btn {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    cursor: default;
+    font-weight: 700;
+    height: 36px;
+    user-select: none;
+}
+
+/*
+ * Card component
+ */
+
+.card {
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 2px;
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    background-color: #F7F7F7;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+}
+
+.profile-img-card {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: block;
+    height: 96px;
+    margin: 0 auto 10px;
+    width: 96px;
+}
+
+/*
+ * Form styles
+ */
+
+.profile-name-card {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 0;
+    min-height: 1em;
+    text-align: center;
+}
+
+.reauth-email {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #404040;
+    display: block;
+    font-size: 14px;
+    line-height: 2;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.form-signin #inputEmail,
+.form-signin #inputPassword {
+    direction: ltr;
+    font-size: 16px;
+    height: 44px;
+}
+
+.form-signin input[type=email],
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.form-signin .form-control:focus {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+    border-color: rgb(104, 145, 162);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+    outline: 0;
+}
+.wrapper{
+text-align: center;
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus { background-color: rgb(12, 97, 33); }
+
+.forgot-password { color: rgb(104, 145, 162); }
+
+.forgot-password:hover,
+.forgot-password:active,
+.forgot-password:focus { color: rgb(12, 97, 33); }
