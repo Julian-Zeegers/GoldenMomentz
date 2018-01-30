@@ -23,6 +23,6 @@ export class PersonService {
   }
   
   put(model: PersonModel): Observable<PersonModel> {
-    return this.service.put(model, this.controllerName);
+    return this.service.put(model,model.id, this.controllerName);
   }
 }

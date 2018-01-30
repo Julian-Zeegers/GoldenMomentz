@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { DataTableModule, SharedModule, TabViewModule } from 'primeng/primeng';
 
 @Component({
-  selector: 'app-person-list',
+  selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
   styleUrls: []
 })
@@ -37,7 +37,7 @@ export class CustomerListComponent implements OnInit {
   }
   update(customer: CustomerModel): void {
     this.updateCustomer = customer;
-    this.router.navigate(['/personUpdate', customer.id]);
+    this.router.navigate(['/customers', customer.id]);
   }
 
 

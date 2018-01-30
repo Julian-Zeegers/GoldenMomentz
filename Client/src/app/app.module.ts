@@ -9,6 +9,7 @@ import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { provideAuth, AUTH_PROVIDERS, AuthHttp, AuthConfig } from 'angular2-jwt';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 import { 
   CoreModule, 
@@ -26,13 +27,19 @@ import {
   DashboardComponent,  
   LoginComponent, 
   AdminComponent,
-  PersonListComponent, PersonComponent, CustomerComponent, CustomerListComponent 
+  PersonListComponent, PersonComponent, CustomerComponent, CustomerListComponent,
+  OrderComponent,
+  OrderListComponent,
+  DiaryComponent
 } from './components';
 
 // Services
 import {
   PersonService,
   CustomerService,
+  OrderService,
+  CollectionService,
+  SalesPersonService
 } from './services';
 
 // Pipes
@@ -64,7 +71,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ReactiveFormsModule,
     Ng2AutoCompleteModule,
     AppRoutingModule,
-
+    MyDateRangePickerModule,
     // Core
     CoreModule,
     ToastModule.forRoot(),
@@ -76,7 +83,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AdminComponent,
     PersonListComponent, PersonComponent,
     CustomerComponent,
-    CustomerListComponent 
+    CustomerListComponent,
+    OrderComponent,
+    OrderListComponent,
+    DiaryComponent
   ],
   providers: [
     { provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [ Http, RequestOptions ] },
@@ -84,6 +94,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     PersonService,
     CustomerService,
     AuthGuardService,
+    OrderService,
+    CollectionService
   ],
 
   bootstrap: [

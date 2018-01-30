@@ -1,0 +1,144 @@
+<style>
+    .top-buffer { margin-top:23px; }
+
+    .note-input {
+    width: 375px;
+    height: 65px;
+
+}
+.noteCol-input {
+    width: 275px;
+
+
+}
+</style>
+
+
+<div class="ui-g-12">
+    <p-fieldset>
+        <p-header><i class="fa fa-file-text-o heading"></i>{{state}} Order</p-header>
+
+        <div class="ui-g-8">
+            <div class="ui-g-1">
+            </div>
+            <div class="ui-g-11">
+                <div class="row mt-10">
+                    <div class="ui-g">
+                        <div class="ui-float-label">
+                            <p-autoComplete id="customer" [(ngModel)]="model.customer" [suggestions]="customerResults" (completeMethod)="filterCustomerMultiple($event)" field="name" styleClass="wid100" [dropdown]="true">
+                                <ng-template let-customer pTemplate="body">
+                                    <span >{{customer.name}}</span>
+                                </ng-template>
+                            </p-autoComplete>
+                            <label for="customer">Customer</label>
+                        </div>
+                    </div>
+                    <div class="ui-g-1">
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-float-label">
+                            <input id="orderBookId" [(ngModel)]="model.orderBookId" type="text" pInputText>  
+                            <label for="orderBookId">Order Number</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-20 top-buffer">
+                    <div class="ui-g">
+                        <div class="ui-float-label">
+                            <i>R</i>
+                            <input id="purchasePrice" [(ngModel)]="model.purchasePrice" type="text" style="width: 155px" pInputText>
+                            <label style="padding-left: 12px" for="purchasePrice">Purchase Price</label>
+                        </div>
+                    </div>
+                    <div class="ui-g-1">
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-float-label">
+                            <i>R</i>
+                            <input id="deposit" [(ngModel)]="model.deposit" type="text" style="width: 155px"  pInputText>
+                            <label style="padding-left: 12px" for="deposit">Deposit</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-20 top-buffer">
+                    <div class="ui-g">
+                        <div class="ui-float-label">
+                            <input class="note-input" id="note" [(ngModel)]="model.note" type="text" pInputText>
+                            <label for="address">Notes</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-fieldset>
+</div>
+
+
+
+
+
+<div class="ui-g-12">
+    <p-fieldset>
+        <p-header><i class="fa fa-file-text-o heading"></i>Collections</p-header>
+        <div class="row">
+            <div class="col-md-12" *ngFor="let collection of collections; let idx = index" [attr.data-index]="idx">
+                    <div class="row ">
+                        <span class="form-h1">Collection {{idx + 1}}</span>
+                        <i (click)="removeCollection(idx)" class="fa fa-trash danger clickable ml-1"></i>
+                    </div>
+                    <div class="ui-g-8">
+                        <div class="ui-g-1">
+                        </div>
+                        <div class="ui-g-11">
+                            <div class="row mt-10">
+                                <div class="ui-g">
+                                    <div class="ui-float-label">
+                                        <p-calendar id="collectionDate"  [(ngModel)]="collection.collectionDate" dateFormat="yy/mm/dd" [showIcon]="true"></p-calendar>
+                                        <label for="collectionDate">Collection Date</label>
+                                    </div>
+                                </div>
+                                <div class="ui-g-1">
+                                </div>
+                                <div class="ui-g">
+                                    <div class="ui-float-label">
+                                        <i>R</i>
+                                        <input id="collection.amount" [(ngModel)]="collection.amount" type="text" style="width: 155px" pInputText>
+                                        <label style="padding-left: 12px" for="collection.amount">Amount</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-20 top-buffer">
+                                <div class="ui-g">
+                                    <div class="ui-float-label">
+                                        <input class="noteCol-input" id="collection.note" [(ngModel)]="collection.note" type="text" pInputText>
+                                        <label for="collection.note">Notes</label>
+                                    </div>
+                                </div>
+                                <div class="ui-g-1">
+                                </div>
+                                <div class="ui-g">
+                                    <div class="ui-label">
+                                        <input id="collection.paid" [(ngModel)]="collection.paid" type="checkbox"  pInputText>
+                                        <label for="collection.paid">Paid</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row mt-20">
+            <button label="Add Collection" (click)="addCollection()" class="ui-button-info" icon="fa-plus" iconPos="right" type="button" pButton></button>
+        </div>
+        <div class="row mt-20 top-buffer">
+            <button label="Cancel" (click)="cancel()" class="ui-button-warning" icon="fa-close" iconPos="right" type="button" pButton></button>
+            <button label="Create" *ngIf="!updating" (click)="create()" class="ui-button-success" icon="fa-check" iconPos="right" type="button" pButton></button>
+            <button label="Update" *ngIf="updating" (click)="update()" class="ui-button-success" icon="fa-check" iconPos="right" type="button" pButton></button>
+        </div>
+    </p-fieldset>
+</div>
+
+

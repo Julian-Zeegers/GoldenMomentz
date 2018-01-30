@@ -12,12 +12,9 @@ namespace GoldenMomentz.Models
 
         [Required]
         [StringLength(255)]
-        public string FirstName { get; set; }
+        public string Name { get; set; }
 
-        [StringLength(255)]
-        public string Surname { get; set; }
-
-        public int? IdNumber { get; set; }
+        public string IdNumber { get; set; }
 
         [StringLength(10)]
         public string CellPhoneNumber { get; set; }
@@ -26,5 +23,7 @@ namespace GoldenMomentz.Models
         public string WorkPhoneNumber { get; set; }
 
         public string Address { get; set; }
+
+        public string Email { get; set; }
     }
 }

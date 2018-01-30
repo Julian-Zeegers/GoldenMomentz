@@ -10,3 +10,9 @@ export * from './person';
 export * from './customer/customer-list/customer-list.component';
 export * from './customer/customer.component';
 
+export * from './order/order-list/order-list.component';
+export * from './order/order.component';
+
+export * from './order/diary/diary.component';
+
+

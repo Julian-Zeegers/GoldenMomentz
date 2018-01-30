@@ -1,25 +1,28 @@
 .navbar-light, .navbar-nav, .nav-link, .dropdown-item {
-    color: #e87439 !important;
+    color: #BF9B30 !important;
+    font-size: 15px;
+
 
 }
 
 .dropdown-item.active, .dropdown-item:active {
-    background-color: #e87439 !important;
+    background-color: #BF9B30 !important;
     color: #ffffff !important;
 }
 
-.wotif-brand {
-    color: #e87439 !important;
+.golden-brand {
+    color: #BF9B30 !important;
     font-weight: bold !important;
 }
 
 .logo {
-    height: 40px;
+    height: 60px;
+    width: 80px;
     border-right: solid;
     padding-right: 10px;
 }
 
-.wotif-nav-bg {
+.golden-nav-bg {
     background-color: #eeeeee !important;
 }
 

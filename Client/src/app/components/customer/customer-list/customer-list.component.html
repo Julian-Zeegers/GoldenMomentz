@@ -1,17 +1,22 @@
+<style>
+    .golden-primary{
+        color: #BF9B30;
+    }
+</style>
+
 <h2><i class="fa fa-users heading"></i>Customers</h2>
 
-<a class="wotif-primary add" routerLink="/customer"><i class="fa fa-plus"></i> New Customer</a>
+<a class="golden-primary add" routerLink="/customer"><i class="fa fa-plus"></i> New Customer</a>
 <p-dataTable [value]="customers" [rows]="10" [paginator]="true" #dt>
     
-    <p-column [style]="{'text-decoration': 'none'}" field="firstName" header="Name" [sortable]="true"></p-column>
-    <p-column [style]="{'text-decoration': 'none'}" field="surname" header="Surname" [sortable]="true"></p-column>
-    <p-column [style]="{'text-decoration': 'none', 'width': '150px'}" field="idNumber" header="ID Number" [sortable]="true"></p-column>
-    <p-column [style]="{'text-decoration': 'none'}" field="cellPhoneNumber" header="Cell Number" [sortable]="true"></p-column>
-    <p-column [style]="{'text-decoration': 'none'}" field="workPhoneNumber" header="Work Number" [sortable]="true"></p-column>
-    <p-column [style]="{'text-decoration': 'none'}" field="cellPhoneNumber" header="Addres" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '10%'}" field="name" header="Name" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '10%'}" field="idNumber" header="ID Number" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '10%'}" field="cellPhoneNumber" header="Cell Number" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '10%'}" field="workPhoneNumber" header="Work Number" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '27%'}" field="address" header="Address" [sortable]="true"></p-column>
     
 
-    <p-column styleClass="col-button" header="Action">
+    <p-column [style]="{'text-decoration': 'none' , 'width': '7%'}" styleClass="col-button" header="Action">
         <ng-template let-row="rowData" pTemplate="body">
             <a routerLink="/customer/{{row.id}}"><i class="fa fa-edit" title="Update"></i></a>
         </ng-template>

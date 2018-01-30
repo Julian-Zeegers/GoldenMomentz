@@ -211,11 +211,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CollectionsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\SalesPeopleController.cs" />
+    <Compile Include="Dtos\CollectionDto.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\OrderDto.cs" />
+    <Compile Include="Dtos\SalesPersonDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,11 +232,58 @@
     <Compile Include="Migrations\201801041113024_AddFirstCustomer.Designer.cs">
       <DependentUpon>201801041113024_AddFirstCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801050530394_AddedSalesPersonModelAndController.cs" />
+    <Compile Include="Migrations\201801050530394_AddedSalesPersonModelAndController.Designer.cs">
+      <DependentUpon>201801050530394_AddedSalesPersonModelAndController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801050538449_AddFirstSalesPerson.cs" />
+    <Compile Include="Migrations\201801050538449_AddFirstSalesPerson.Designer.cs">
+      <DependentUpon>201801050538449_AddFirstSalesPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801050545288_ChangedIdNumberToString.cs" />
+    <Compile Include="Migrations\201801050545288_ChangedIdNumberToString.Designer.cs">
+      <DependentUpon>201801050545288_ChangedIdNumberToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801050645270_AddedOrderModelAndController.cs" />
+    <Compile Include="Migrations\201801050645270_AddedOrderModelAndController.Designer.cs">
+      <DependentUpon>201801050645270_AddedOrderModelAndController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801050931150_AddedCollectionModelAndController.cs" />
+    <Compile Include="Migrations\201801050931150_AddedCollectionModelAndController.Designer.cs">
+      <DependentUpon>201801050931150_AddedCollectionModelAndController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801050942256_RemovedOrderBookIdFromCollection.cs" />
+    <Compile Include="Migrations\201801050942256_RemovedOrderBookIdFromCollection.Designer.cs">
+      <DependentUpon>201801050942256_RemovedOrderBookIdFromCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801050942512_AddedOrderAndCollectionData.cs" />
+    <Compile Include="Migrations\201801050942512_AddedOrderAndCollectionData.Designer.cs">
+      <DependentUpon>201801050942512_AddedOrderAndCollectionData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801101225407_RemovedSurname.cs" />
+    <Compile Include="Migrations\201801101225407_RemovedSurname.Designer.cs">
+      <DependentUpon>201801101225407_RemovedSurname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801101231081_AddNewData.cs" />
+    <Compile Include="Migrations\201801101231081_AddNewData.Designer.cs">
+      <DependentUpon>201801101231081_AddNewData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801101311142_AddNewRowData.cs" />
+    <Compile Include="Migrations\201801101311142_AddNewRowData.Designer.cs">
+      <DependentUpon>201801101311142_AddNewRowData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801101314382_AddNewRowCollectData.cs" />
+    <Compile Include="Migrations\201801101314382_AddNewRowCollectData.Designer.cs">
+      <DependentUpon>201801101314382_AddNewRowCollectData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Collection.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\SalesPerson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -317,6 +369,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801041113024_AddFirstCustomer.resx">
       <DependentUpon>201801041113024_AddFirstCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801050530394_AddedSalesPersonModelAndController.resx">
+      <DependentUpon>201801050530394_AddedSalesPersonModelAndController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801050538449_AddFirstSalesPerson.resx">
+      <DependentUpon>201801050538449_AddFirstSalesPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801050545288_ChangedIdNumberToString.resx">
+      <DependentUpon>201801050545288_ChangedIdNumberToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801050645270_AddedOrderModelAndController.resx">
+      <DependentUpon>201801050645270_AddedOrderModelAndController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801050931150_AddedCollectionModelAndController.resx">
+      <DependentUpon>201801050931150_AddedCollectionModelAndController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801050942256_RemovedOrderBookIdFromCollection.resx">
+      <DependentUpon>201801050942256_RemovedOrderBookIdFromCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801050942512_AddedOrderAndCollectionData.resx">
+      <DependentUpon>201801050942512_AddedOrderAndCollectionData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801101225407_RemovedSurname.resx">
+      <DependentUpon>201801101225407_RemovedSurname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801101231081_AddNewData.resx">
+      <DependentUpon>201801101231081_AddNewData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801101311142_AddNewRowData.resx">
+      <DependentUpon>201801101311142_AddNewRowData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801101314382_AddNewRowCollectData.resx">
+      <DependentUpon>201801101314382_AddNewRowCollectData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

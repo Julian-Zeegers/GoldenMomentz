@@ -13,7 +13,7 @@ import { CustomerService,
 
 
 @Component({
-  selector: 'app-person',
+  selector: 'app-customer',
   templateUrl: './customer.component.html'
 })
 export class CustomerComponent implements OnInit {
@@ -40,15 +40,9 @@ export class CustomerComponent implements OnInit {
       }
       
       return this.service.get(this.idParam);
-    }).subscribe((person: CustomerModel) => {
-      if (person != null) {
-        this.model = person;
-        // this.selectedGender = this.genders.find(x => x.id === person.genderId);
-        // this.selectedRace = this.races.find(x => x.id === person.raceId);
-        // this.selectedNationality = this.nationalities.find(x => x.id === person.nationalityId);
-        // this.selectedExtension = this.extensions.find(x => x.id === person.extensionId);
-        // this.getPersonSkills();
-        // this.getPersonOrganisations();
+    }).subscribe((customer: CustomerModel) => {
+      if (customer != null) {
+        this.model = customer;
       }
     });
   }
@@ -77,11 +71,11 @@ export class CustomerComponent implements OnInit {
   }
   
   create(){
-    this.prepareModel();
+    //this.prepareModel();
 
     this.service.post(this.model)
       .subscribe(result => {
-        this.router.navigate(['/people']);
+        this.router.navigate(['/customers']);
       }, err => {
         this.toastr.success("Successfully added new person", 'Success');
         this.toastr.error('Could not process request', 'An error occurred');
@@ -90,19 +84,20 @@ export class CustomerComponent implements OnInit {
   }
 
   update(){
-    this.prepareModel();
     this.service.put(this.model)
       .subscribe(result => {
         this.toastr.success("Successfully updated person details", 'Success');
-        this.router.navigate(['/people']);
+        this.router.navigate(['/customers']);
+        console.log(JSON.stringify("Update"+this.model));
       }, err => {
+          console.log(JSON.stringify(this.model));
         this.toastr.error('Could not process request', 'An error occurred');
         this.cancel();
       });
   }
 
   cancel(){
-       this.router.navigate(['/people']);
+       this.router.navigate(['/customers']);
   }
 
     filterList(query:any, items: any[]):any[] {

@@ -1,0 +1,79 @@
+<style>
+    .golden-primary{
+        color: #BF9B30;
+    }
+
+
+    #wrapper {
+  display: flex;
+  padding:0px 0px 0px 10px;
+}
+#first {
+     float: left;
+}
+#second {
+    float: center;
+    height: 40px;
+    padding:10px 0px 0px 40px;
+    display: flex;
+    align-items: center
+}
+
+#third {
+    float: right;
+    padding:10px 6px 6px 60px;
+}
+
+#bankDoc {
+    float: right;
+    padding:10px 6px 6px 0px;
+    display: flex;
+    align-items: center
+}
+</style>
+
+<h2><i class="fa fa-calendar heading"></i>Diary</h2>
+
+
+
+<a class="golden-primary add" routerLink="/order"><i class="fa fa-plus"></i>New Order</a>
+
+
+<div id="wrapper">
+    <div id="third" >
+        <i class="fa fa-search" style="margin:4px 4px 0 0; "></i>
+        <input #gb type="text" pInputText size="50" placeholder="Search" style="color:black; float: right;">
+    </div>  
+    <div id="second" >
+        <label >Date: </label>
+        <p-calendar  (onSelect)="onDateChanged($event)" [(ngModel)]="date" dateFormat="dd-MM-yy" [showIcon]="true" required></p-calendar>
+    </div>
+</div>
+
+
+
+
+<p-dataTable [value]="selectedCollections" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt>
+    
+    <p-column [style]="{'text-decoration': 'none' , 'width': '7%'}" field="order.orderBookId" header="Order Id" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '10%'}" field="name" header="Customer" [sortable]="true">
+        <ng-template let-row="rowData" pTemplate="body">
+                    <span >{{row.order.customer.name}} </span>
+        </ng-template>
+    </p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '20%'}" field="order.customer.address" header="Address" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '8%'}" field="amount" header="Amount" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '8%'}" field="balance" header="Balance" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '22%'}" field="note" header="Notes" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '5%'}" field="paid" header="Paid" [sortable]="true">
+    <ng-template let-row="rowData" pTemplate="body">
+                    <input type="checkbox" [(ngModel)]="row.paid"/>
+        </ng-template>
+    </p-column>
+
+    <p-column [style]="{'text-decoration': 'none' , 'width': '7%'}" styleClass="col-button" header="Action">
+        <ng-template let-row="rowData" pTemplate="body">
+            <a routerLink="/order/{{row.id}}"><i class="fa fa-edit" title="Update">Edit</i></a>
+        </ng-template>
+    </p-column>
+</p-dataTable>

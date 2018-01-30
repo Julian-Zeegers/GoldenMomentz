@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light wotif-nav-bg mb-2 box-shadow">
+<nav class="navbar navbar-expand-lg navbar-light bg-light golden-nav-bg mb-2 box-shadow">
     <!-- 
       Brand
     -->
-    <a class="navbar-brand wotif-brand" routerLink="dashboard">
-      <img class="logo" src="../../assets/wot-if-logo.png" />
+    <a class="navbar-brand golden-brand" routerLink="dashboard">
+      <img class="logo" src="../../assets/golden.png" />
     </a>
     
     <!-- 
@@ -21,36 +21,23 @@
       <span class="mr-auto">
         <ul class="navbar-nav" *ngIf="!isAuthenticated()">
           <li class="nav-item dropdown" [routerLinkActive]="['active']">
-            <a class="nav-link dropdown-toggle clickable" id="peopleDropdown" role="button" data-toggle="dropdown">
-              <i class="fa fa-map heading"></i>Diepsloot
+            <a class="nav-item nav-link" routerLink="customers" [routerLinkActive]="['active']" (click)="showSpinner()">
+              Customers
             </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" routerLink="people" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-users heading"></i>People</a>
-              <a class="dropdown-item" routerLink="talents" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-paint-brush heading"></i>Talents</a>
-              <a class="dropdown-item" routerLink="extensions" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-map-signs heading"></i>Extensions</a>
-              <a class="dropdown-item" routerLink="problems" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-exclamation-circle heading"></i>Extension Problems</a>
-            </div>
           </li>
 
           <li class="nav-item dropdown" [routerLinkActive]="['active']">
-            <a class="nav-link dropdown-toggle clickable" id="programDropdown" role="button" data-toggle="dropdown">
-              <i class="fa fa-handshake-o heading"></i>Support
+            <a class="nav-item nav-link" routerLink="orders" [routerLinkActive]="['active']" (click)="showSpinner()">
+              Orders
             </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" routerLink="programs" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-object-group heading"></i>Programs</a>
-              <a class="dropdown-item" routerLink="projects" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-object-ungroup heading"></i>Projects</a>
-              <a class="dropdown-item" routerLink="organisations" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-building heading"></i>Organisations</a>
-            </div>
           </li>
-          
+
           <li class="nav-item dropdown" [routerLinkActive]="['active']">
-            <a class="nav-link dropdown-toggle clickable" id="surveyDropdown" role="button" data-toggle="dropdown">
-              <i class="fa fa-wrench heading"></i>Tools
+            <a class="nav-item nav-link" routerLink="diary" [routerLinkActive]="['active']" (click)="showSpinner()">
+              Diary
             </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" routerLink="surveys" [routerLinkActive]="['active']" (click)="showSpinner()"><i class="fa fa-file-text-o heading"></i>Surveys</a>
-            </div>
           </li>
+
         </ul>
       </span>
       
@@ -70,9 +57,9 @@
             </div>
           </li>
 
-        <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!isAuthenticated()"><a class="nav-link" routerLink="login"><i class="fa fa-sign-in heading"></i>Login</a></li>
-        <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!isAuthenticated()"><a class="nav-link" routerLink="register"><i class="fa fa-address-book heading"></i>Register</a></li>
-        <li class="nav-item" [routerLinkActive]="['active']" *ngIf="isAuthenticated()"><a class="nav-link" routerLink="login" (click)="logout()"><i class="fa fa-sign-out heading"></i>Logout</a></li>
+        <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!isAuthenticated()"><a class="nav-link" routerLink="login">Login</a></li>
+        <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!isAuthenticated()"><a class="nav-link" routerLink="register">Register</a></li>
+        <li class="nav-item" [routerLinkActive]="['active']" *ngIf="isAuthenticated()"><a class="nav-link" routerLink="login" (click)="logout()">Logout</a></li>
       </ul>
     </div>
   </nav>

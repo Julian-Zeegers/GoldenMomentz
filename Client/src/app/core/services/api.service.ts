@@ -61,9 +61,9 @@ export class ApiService {
                   });
   }
   
-  put(body: any, controller: string): Observable<any> {
+  put(body: any, id: number, controller: string): Observable<any> {
     const target = this.apiUrl + controller;
-    return this.http.put(target, body)
+    return this.http.put(`${target}/${id}`, body)
                     .map(response => {
                       const ret = response.json();
                       return ret;

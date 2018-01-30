@@ -9,7 +9,10 @@ import {
     PersonComponent,
     PersonListComponent,
     CustomerComponent,
-    CustomerListComponent 
+    CustomerListComponent,
+    OrderComponent,
+    OrderListComponent,
+    DiaryComponent
 } from './components/';
 
 // Services
@@ -21,9 +24,13 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'login/:redirectUrl', component: LoginComponent },
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService] },
-    { path: 'customer', component: CustomerComponent, canActivate: [AuthGuardService] },
-    { path: 'customer/:id', component: CustomerComponent, canActivate: [AuthGuardService] },
+    { path: 'customer', component: CustomerComponent },
+    { path: 'customer/:id', component: CustomerComponent },
     { path: 'customers', component: CustomerListComponent },
+    { path: 'order', component: OrderComponent },
+    { path: 'order/:id', component: OrderComponent },
+    { path: 'orders', component: OrderListComponent },
+    { path: 'diary', component: DiaryComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
     { path: '**', component: LoginComponent }
 ];

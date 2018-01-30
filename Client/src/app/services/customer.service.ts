@@ -22,6 +22,8 @@ export class CustomerService {
   }
   
   put(model: CustomerModel): Observable<CustomerModel> {
-    return this.service.put(model, this.controllerName);
+    var id = model.id
+    delete model.id;
+    return this.service.put(model, id , this.controllerName);
   }
 }

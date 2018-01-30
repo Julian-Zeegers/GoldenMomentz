@@ -1,9 +1,7 @@
 export class CustomerModel {
     id: number;
-
-    firstName: string;
-    surname: string;
-    idNumber: number;
+    name: string;
+    idNumber: string;
     cellPhoneNumber: string;
     workPhoneNumber: string;
     address: string;
