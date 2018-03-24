@@ -276,6 +276,14 @@
     <Compile Include="Migrations\201801101314382_AddNewRowCollectData.Designer.cs">
       <DependentUpon>201801101314382_AddNewRowCollectData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803221657330_AddedDateTime2.cs" />
+    <Compile Include="Migrations\201803221657330_AddedDateTime2.Designer.cs">
+      <DependentUpon>201803221657330_AddedDateTime2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803221730262_AddedCustomerIDToModel.cs" />
+    <Compile Include="Migrations\201803221730262_AddedCustomerIDToModel.Designer.cs">
+      <DependentUpon>201803221730262_AddedCustomerIDToModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Collection.cs" />
@@ -402,6 +410,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801101314382_AddNewRowCollectData.resx">
       <DependentUpon>201801101314382_AddNewRowCollectData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803221657330_AddedDateTime2.resx">
+      <DependentUpon>201803221657330_AddedDateTime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803221730262_AddedCustomerIDToModel.resx">
+      <DependentUpon>201803221730262_AddedCustomerIDToModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

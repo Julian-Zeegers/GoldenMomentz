@@ -30,7 +30,6 @@ export class DiaryComponent implements OnInit {
   getAll(){
     this.collection_service.getAll()
       .subscribe(result => {
-        console.log("Update: "+JSON.stringify(result));
         return this.collections = result
       });
   }
@@ -51,9 +50,13 @@ export class DiaryComponent implements OnInit {
       for(var i = 0;i<this.collections.length;i++) 
       { 
           var creation = new Date(this.collections[i].collectionDate);
-          if(creation == event) 
+          if(this.getDate(creation) == this.getDate(event)) 
               this.selectedCollections.push(this.collections[i]);
       } 
+  }
+
+  getDate(date: Date){
+    return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate(); 
   }
 
 }

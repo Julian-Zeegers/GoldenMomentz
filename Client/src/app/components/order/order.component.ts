@@ -18,6 +18,7 @@ import { OrderService, CollectionService,CustomerService, SalesPersonService
 })
 export class OrderComponent implements OnInit {
   idParam: number;
+  newOrderId: number;
   state: string = "New";
   updating: boolean = false;
   model = new OrderModel();
@@ -25,20 +26,25 @@ export class OrderComponent implements OnInit {
   collections: CollectionModel[] = [];
   date: Date;
   customerResults: CustomerModel[] = [];
+  selectedCustomer = new CustomerModel();
+  selectedSalesPerson = new SalesPersonModel();
+  salesPersonResults:SalesPersonModel[] = [];
  
 
 
   constructor(private service: OrderService, 
               private collection_service: CollectionService,
               private customer_service: CustomerService,
-              //private sales_service: SalesPersonService,
+              private sales_service: SalesPersonService,
               private router: Router, 
               private route: ActivatedRoute,
               private toastr: ToastsManager) { }
 
   ngOnInit() {
+//Subbed for now until login
+    this.getSalesPerson(2)
 
-    this.getCollections();
+    //this.getCollections();
 
     this.route.paramMap
     .switchMap((params: ParamMap) => {
@@ -59,35 +65,58 @@ export class OrderComponent implements OnInit {
   getCollections(){
     this.collection_service.getAll()
       .subscribe(result => {
-        
         this.collections = result;
         for(let i = 0; i <  this.collections.length; i++) {
             this.collections[i].collectionDate = new Date(this.collections[i].collectionDate);
           }
-          console.log("Collections: "+JSON.stringify(this.collections));
         return this.collections = result;
       });
   }
 
   
   prepareModel() {
-    let skillIds: number[] = [];
+    this.model.dateCreated = new Date();
+    //time zone out by 2 hours
+    this.model.dateCreated.setHours(this.model.dateCreated.getHours() + 2);
+    this.model.customerId = this.selectedCustomer.id;
+    //subbed
+    //this.model.salesPersonId = this.selectedSalesPerson.id;
+    this.model.salesPersonId = 2;
     
   }
   
   create(){
-    //this.prepareModel();
-    //this.getSalesPerson(5)
-    this.model.salesPersonId = this.salesPerson.id
-    console.log("Post: "+JSON.stringify(this.model));
+    this.prepareModel();
+    this.newOrderId = 0;
+
     this.service.post(this.model)
       .subscribe(result => {
-        this.router.navigate(['/orders']);
-      }, err => {
+        this.createCollections(result.id);
+        //this.router.navigate(['/orders']);
         this.toastr.success("Successfully added new order", 'Success');
+      }, err => {
+        this.toastr.error('Could not process request', 'An error occurred');
+        //this.cancel();
+      });
+
+  }
+
+  createCollections(id:number){
+    this.collections.forEach(element => {
+      element.orderId = id;
+      //time zone out by 2 hours
+      element.collectionDate.setHours(element.collectionDate.getHours() + 2);
+    });
+
+    this.collection_service.post(this.collections)
+      .subscribe(result => {
+        this.router.navigate(['/orders']);
+        this.toastr.success("Successfully collection dates added", 'Success');
+      }, err => {
         this.toastr.error('Could not process request', 'An error occurred');
         this.cancel();
       });
+
   }
 
   update(){
@@ -96,16 +125,13 @@ export class OrderComponent implements OnInit {
       .subscribe(result => {
         this.toastr.success("Successfully updated order details", 'Success');
         this.router.navigate(['/customers']);
-        console.log("Update"+JSON.stringify(this.model));
       }, err => {
-          console.log(JSON.stringify(this.model));
         this.toastr.error('Could not process request', 'An error occurred');
         this.cancel();
       });
   }
 
   cancel(){
-        console.log("date: "+JSON.stringify(this.date));
        this.router.navigate(['/orders']);
   }
 
@@ -124,16 +150,32 @@ export class OrderComponent implements OnInit {
         let query = event.query;
         this.customer_service.getAll().subscribe(result => {
         this.customerResults = this.filterList(query, result);
-        console.log(JSON.stringify("Names"+JSON.stringify(this.customerResults)));
-        console.log("ID: "+JSON.stringify(this.model));
         });
     }
 
-  // getSalesPerson(id:number) {
-  //        this.sales_service.get(id).subscribe(result => {
-  //       return this.salesPerson = result;;
-  //       });
-  //   }
+    filterListSales(query:any, items: SalesPersonModel[]):any[] {
+      let filtered : SalesPersonModel[] = [];
+      for(let i = 0; i < items.length; i++) {
+          let element = items[i];
+          if(element.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+              filtered.push(element);
+          }
+      }
+      return filtered;
+  }
+
+    filterSalesPersonMultiple(event:any) {
+      let query = event.query;
+      this.sales_service.getAll().subscribe(result => {
+      this.salesPersonResults = this.filterListSales(query, result);
+      });
+  }
+
+  getSalesPerson(id:number) {
+         this.sales_service.get(id).subscribe(result => {
+        return this.salesPerson = result;
+        });
+    }
       
   addCollection() {
     this.collections.push(new CollectionModel());

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using GoldenMomentz.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GoldenMomentz.Dtos
 {
@@ -14,12 +15,17 @@ namespace GoldenMomentz.Dtos
         public int OrderBookId { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime DateCreated { get; set; }
 
         [Required]
+        public int CustomerId { get; set; }
+
         public CustomerDto Customer { get; set; }
 
         [Required]
+        public int SalesPersonId { get; set; }
+
         public SalesPersonDto SalesPerson { get; set; }
         
         [Required]

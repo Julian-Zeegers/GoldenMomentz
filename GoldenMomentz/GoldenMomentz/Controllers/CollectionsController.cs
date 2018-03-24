@@ -48,11 +48,13 @@ namespace GoldenMomentz.Controllers
 
             // POST /api/Collections
             [HttpPost]
-            public IHttpActionResult CreateCollection(CollectionDto collectionDto)
+            public IHttpActionResult CreateCollection(CollectionDto[] collectionDtos)
             {
                 if (!ModelState.IsValid)
                     return BadRequest("Invalid Input Data for new Collection");
 
+            foreach (var collectionDto in collectionDtos)
+            {
                 var collection = Mapper.Map<CollectionDto, Collection>(collectionDto);
 
                 _context.Collections.Add(collection);
@@ -60,7 +62,9 @@ namespace GoldenMomentz.Controllers
 
                 collectionDto.Id = collection.Id;
 
-                return Created(new Uri(Request.RequestUri + "/" + collection.Id), collectionDto);
+            }
+
+                return Ok("successful");
             }
 
             // Put /api/Collections/1

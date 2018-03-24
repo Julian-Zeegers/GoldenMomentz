@@ -17,8 +17,8 @@ export class CollectionService {
     return this.service.get(id, this.controllerName)
   }
 
-  post(model: CollectionModel): Observable<CollectionModel> {
-    return this.service.post(model, this.controllerName);
+  post(modelArray: CollectionModel[]): Observable<CollectionModel> {
+    return this.service.post(modelArray, this.controllerName);
   }
   
   put(model: CollectionModel): Observable<CollectionModel> {

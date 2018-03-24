@@ -8,7 +8,7 @@ namespace GoldenMomentz.Migrations
         public override void Up()
         {
             Sql(@"INSERT INTO [dbo].[Orders] ( [OrderBookId], [DateCreated], [CustomerId], [SalesPersonId], [PurchasePrice], [Deposit], [PenaltyCharge], [Notes]) 
-                  VALUES (1234, 2018-01-27, 1006,5, 699, 0, 0, N'An example Note')
+                  VALUES (1234, 2018-01-27, 1,1, 699, 0, 0, N'An example Note')
                  ");
         }
         

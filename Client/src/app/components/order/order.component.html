@@ -25,8 +25,8 @@
                 <div class="row mt-10">
                     <div class="ui-g">
                         <div class="ui-float-label">
-                            <p-autoComplete id="customer" [(ngModel)]="model.customer" [suggestions]="customerResults" (completeMethod)="filterCustomerMultiple($event)" field="name" styleClass="wid100" [dropdown]="true">
-                                <ng-template let-customer pTemplate="body">
+                            <p-autoComplete id="customer" [(ngModel)]="selectedCustomer" [suggestions]="customerResults" (completeMethod)="filterCustomerMultiple($event)" field="name" styleClass="wid100" [dropdown]="true">
+                                <ng-template let-customer pTemplate="body" >
                                     <span >{{customer.name}}</span>
                                 </ng-template>
                             </p-autoComplete>
@@ -70,6 +70,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row mt-20 top-buffer" hidden>
+                    <div class="ui-g">
+                        <div class="ui-float-label">
+                            <p-autoComplete id="salesPerson" [(ngModel)]="selectedSalesPerson" [suggestions]="salesPersonResults" (completeMethod)="filterSalesPersonMultiple($event)" field="name" styleClass="wid100" [dropdown]="true">
+                                <ng-template let-customer pTemplate="body">
+                                    <span >{{salesPerson.name}}</span>
+                                </ng-template>
+                            </p-autoComplete>
+                            <label for="salesPerson">Sales Person</label>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </p-fieldset>

@@ -24,7 +24,6 @@ export class OrderListComponent implements OnInit {
   getAll(){
     this.service.getAll()
       .subscribe(result => {
-        console.log("Update2: "+JSON.stringify(result));
         return this.orders = result;
         
       });

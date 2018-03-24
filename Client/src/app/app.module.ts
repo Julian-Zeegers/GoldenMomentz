@@ -95,7 +95,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CustomerService,
     AuthGuardService,
     OrderService,
-    CollectionService
+    CollectionService,
+    SalesPersonService
   ],
 
   bootstrap: [
