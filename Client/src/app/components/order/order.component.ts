@@ -44,7 +44,7 @@ export class OrderComponent implements OnInit {
 //Subbed for now until login
     this.getSalesPerson(2)
 
-    //this.getCollections();
+    
 
     this.route.paramMap
     .switchMap((params: ParamMap) => {
@@ -58,18 +58,23 @@ export class OrderComponent implements OnInit {
     }).subscribe((order: OrderModel) => {
       if (order != null) {
         this.model = order;
+        this.getCustomer(this.model.customerId);
+        this.getCollections(this.model.id);
       }
     });
   }
 
-  getCollections(){
+  getCollections(id:number){
     this.collection_service.getAll()
       .subscribe(result => {
-        this.collections = result;
-        for(let i = 0; i <  this.collections.length; i++) {
-            this.collections[i].collectionDate = new Date(this.collections[i].collectionDate);
+        for(let i = 0; i <  result.length; i++) {
+            if(result[i].orderId == id)
+            {
+              result[i].collectionDate = new Date(result[i].collectionDate);
+              this.collections.push(result[i]);
+            }
           }
-        return this.collections = result;
+        return this.collections;
       });
   }
 
@@ -146,10 +151,9 @@ export class OrderComponent implements OnInit {
         return filtered;
     }
 
-    filterCustomerMultiple(event:any) {
-        let query = event.query;
-        this.customer_service.getAll().subscribe(result => {
-        this.customerResults = this.filterList(query, result);
+    getCustomer(id:number) {
+        this.customer_service.get(id).subscribe(result => {
+        this.selectedCustomer = result;
         });
     }
 

@@ -76,8 +76,8 @@ export class CustomerComponent implements OnInit {
     this.service.post(this.model)
       .subscribe(result => {
         this.router.navigate(['/customers']);
-      }, err => {
         this.toastr.success("Successfully added new person", 'Success');
+      }, err => {
         this.toastr.error('Could not process request', 'An error occurred');
         this.cancel();
       });
@@ -88,9 +88,7 @@ export class CustomerComponent implements OnInit {
       .subscribe(result => {
         this.toastr.success("Successfully updated person details", 'Success');
         this.router.navigate(['/customers']);
-        console.log(JSON.stringify("Update"+this.model));
       }, err => {
-          console.log(JSON.stringify(this.model));
         this.toastr.error('Could not process request', 'An error occurred');
         this.cancel();
       });
