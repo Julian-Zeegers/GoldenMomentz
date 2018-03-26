@@ -81,7 +81,7 @@ namespace GoldenMomentz.Controllers
 
             _context.SaveChanges();
 
-            return Ok();
+            return Ok("successful");
 
         }
 

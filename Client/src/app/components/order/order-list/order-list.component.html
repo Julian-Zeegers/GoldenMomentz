@@ -7,6 +7,7 @@
 <h2><i class="fa fa-address-book heading"></i>Orders</h2>
 
 <a class="golden-primary add" routerLink="/order"><i class="fa fa-plus"></i> New Order</a>
+<div *ngIf="isDataAvailable">
 <p-dataTable [value]="orders" [rows]="10" [paginator]="true" #dt>
     
     <p-column [style]="{'text-decoration': 'none' , 'width': '5%'}" field="orderBookId" header="OrderId" [sortable]="true"></p-column>
@@ -26,7 +27,11 @@
                     <span >R {{row.purchasePrice }}</span>
         </ng-template>
     </p-column>
-    <p-column [style]="{'text-decoration': 'none' , 'width': '8%'}" field="amount" header="Amount Paid" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '8%' , 'text-align':'center'}" field="amountPaid" header="Amount Paid" [sortable]="true">
+        <ng-template let-row="rowData" pTemplate="body">
+            <span >R {{row.amountPaid }}</span>
+</ng-template>
+    </p-column>
     <p-column [style]="{'text-decoration': 'none' , 'width': '27%'}" field="note" header="Notes" [sortable]="true"></p-column>
     
 
@@ -36,6 +41,7 @@
         </ng-template>
     </p-column>
 </p-dataTable>
+</div>
 
 
 

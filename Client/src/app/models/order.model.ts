@@ -8,4 +8,5 @@ export class OrderModel {
     penaltyCharge: number;
     deposit: number;
     notes: string;
+    amountPaid: number;
 }

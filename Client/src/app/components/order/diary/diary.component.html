@@ -62,18 +62,20 @@
         </ng-template>
     </p-column>
     <p-column [style]="{'text-decoration': 'none' , 'width': '20%'}" field="order.customer.address" header="Address" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '7%'}" field="order.customer.cellPhoneNumber" header="Cellphone" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '7%'}" field="order.customer.workPhoneNumber" header="Work Phone" [sortable]="true"></p-column>
     <p-column [style]="{'text-decoration': 'none' , 'width': '8%'}" field="amount" header="Amount" [sortable]="true"></p-column>
     <p-column [style]="{'text-decoration': 'none' , 'width': '8%'}" field="balance" header="Balance" [sortable]="true"></p-column>
-    <p-column [style]="{'text-decoration': 'none' , 'width': '22%'}" field="note" header="Notes" [sortable]="true"></p-column>
+    <p-column [style]="{'text-decoration': 'none' , 'width': '15%'}" field="note" header="Notes" [sortable]="true"></p-column>
     <p-column [style]="{'text-decoration': 'none' , 'width': '5%'}" field="paid" header="Paid" [sortable]="true">
     <ng-template let-row="rowData" pTemplate="body">
-                    <input type="checkbox" [(ngModel)]="row.paid"/>
+                    <input type="checkbox" [(ngModel)]="row.paid"  (change)="updatePaid($event)"/>
         </ng-template>
     </p-column>
 
     <p-column [style]="{'text-decoration': 'none' , 'width': '7%'}" styleClass="col-button" header="Action">
         <ng-template let-row="rowData" pTemplate="body">
-            <a routerLink="/order/{{row.id}}"><i class="fa fa-edit" title="Update">Edit</i></a>
+            <a routerLink="/order/{{row.orderId}}"><i class="fa fa-edit" title="Update">Edit</i></a>
         </ng-template>
     </p-column>
 </p-dataTable>

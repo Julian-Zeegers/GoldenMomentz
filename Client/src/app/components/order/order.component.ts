@@ -112,7 +112,6 @@ export class OrderComponent implements OnInit {
       //time zone out by 2 hours
       element.collectionDate.setHours(element.collectionDate.getHours() + 2);
     });
-
     this.collection_service.post(this.collections)
       .subscribe(result => {
         this.router.navigate(['/orders']);
@@ -125,16 +124,55 @@ export class OrderComponent implements OnInit {
   }
 
   update(){
+    
+    var newModel = new OrderModel();
+    newModel.customerId = this.model.customerId;
+    newModel.dateCreated  = this.model.dateCreated;
+    newModel.deposit  = this.model.deposit;
+    newModel.id  = this.model.id;
+    newModel.notes  = this.model.notes;
+    newModel.orderBookId  = this.model.orderBookId;
+    newModel.purchasePrice  = this.model.purchasePrice;
+    newModel.salesPersonId  = this.model.salesPersonId;
 
-    this.service.put(this.model)
+
+    this.service.put(newModel)
       .subscribe(result => {
+        this.updateCollections();
         this.toastr.success("Successfully updated order details", 'Success');
-        this.router.navigate(['/customers']);
+        
       }, err => {
         this.toastr.error('Could not process request', 'An error occurred');
         this.cancel();
       });
   }
+
+  updateCollections(){
+    this.collections.forEach(element => {
+
+      var newCol = new CollectionModel();
+      newCol.amount = element.amount;
+      newCol.collectionDate =  element.collectionDate;
+      newCol.id  =  element.id;
+      newCol.notes =  element.notes;
+      newCol.orderId  =  element.orderId;
+      newCol.paid  =  element.paid;
+      newCol.collectionDate.setHours(newCol.collectionDate.getHours() + 2);
+      this.collection_service.put(newCol)
+      .subscribe(result => {
+        this.toastr.success("Successfully collection dates added", 'Success');
+      }, err => {
+        this.toastr.error('Could not process request', 'An error occurred');
+        this.cancel();
+      });
+    });
+    this.router.navigate(['/orders']);
+
+  }
+
+
+
+
 
   cancel(){
        this.router.navigate(['/orders']);
@@ -166,6 +204,13 @@ export class OrderComponent implements OnInit {
           }
       }
       return filtered;
+  }
+
+  filterCustomerMultiple(event:any) {
+    let query = event.query;
+    this.customer_service.getAll().subscribe(result => {
+    this.customerResults = this.filterList(query, result);
+    });
   }
 
     filterSalesPersonMultiple(event:any) {

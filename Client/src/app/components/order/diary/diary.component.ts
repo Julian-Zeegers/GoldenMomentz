@@ -59,4 +59,12 @@ export class DiaryComponent implements OnInit {
     return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate(); 
   }
 
+  updatePaid(event: any){
+    console.log("HI" + JSON.stringify(event.target.checked));
+  }
+
+  payCollection(){
+    
+  }
+
 }

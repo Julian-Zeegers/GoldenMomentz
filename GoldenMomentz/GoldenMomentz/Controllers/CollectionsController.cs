@@ -69,7 +69,7 @@ namespace GoldenMomentz.Controllers
 
             // Put /api/Collections/1
             [HttpPut]
-            public IHttpActionResult UpdateCollection(int id, CustomerDto collectionDto)
+            public IHttpActionResult UpdateCollection(int id, CollectionDto collectionDto)
             {
                 if (!ModelState.IsValid)
                     return BadRequest();
@@ -83,7 +83,7 @@ namespace GoldenMomentz.Controllers
 
                 _context.SaveChanges();
 
-                return Ok();
+                return Ok("successful");
 
             }
 
