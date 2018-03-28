@@ -7,41 +7,42 @@
 <h2><i class="fa fa-address-book heading"></i>Orders</h2>
 
 <a class="golden-primary add" routerLink="/order"><i class="fa fa-plus"></i> New Order</a>
-<div *ngIf="isDataAvailable">
-<p-dataTable [value]="orders" [rows]="10" [paginator]="true" #dt>
+<div *ngIf="loaded">
+    <p-dataTable [value]="orders" [rows]="10" [paginator]="true" #dt>
+        
+        <p-column [style]="{'text-decoration': 'none' , 'width': '5%'}" field="orderBookId" header="OrderId" [sortable]="true"></p-column>
+        <p-column [style]="{'text-decoration': 'none' , 'width': '10%'}" field="name" header="Customer" [sortable]="true">
+            <ng-template let-row="rowData" pTemplate="body">
+                        <span >{{row.customer.name}}</span>
+            </ng-template>
+        </p-column>
     
-    <p-column [style]="{'text-decoration': 'none' , 'width': '5%'}" field="orderBookId" header="OrderId" [sortable]="true"></p-column>
-    <p-column [style]="{'text-decoration': 'none' , 'width': '10%'}" field="name" header="Customer" [sortable]="true">
-        <ng-template let-row="rowData" pTemplate="body">
-                    <span >{{row.customer.name}}</span>
-        </ng-template>
-    </p-column>
-  
-    <p-column [style]="{'text-decoration': 'none' , 'width': '5%', 'text-align':'center'}" field="dateCreated" header="Date" [sortable]="true">
-        <ng-template let-row="rowData" pTemplate="body">
-                    <span >{{row.dateCreated | date: 'dd-MMM-yyyy' }}</span>
-        </ng-template>
-    </p-column>
-    <p-column [style]="{'text-decoration': 'none' , 'width': '8%' , 'text-align':'center'}" field="purchasePrice" header="Purchase Price" [sortable]="true">
-        <ng-template let-row="rowData" pTemplate="body">
-                    <span >R {{row.purchasePrice }}</span>
-        </ng-template>
-    </p-column>
-    <p-column [style]="{'text-decoration': 'none' , 'width': '8%' , 'text-align':'center'}" field="amountPaid" header="Amount Paid" [sortable]="true">
-        <ng-template let-row="rowData" pTemplate="body">
-            <span >R {{row.amountPaid }}</span>
-</ng-template>
-    </p-column>
-    <p-column [style]="{'text-decoration': 'none' , 'width': '27%'}" field="note" header="Notes" [sortable]="true"></p-column>
-    
+        <p-column [style]="{'text-decoration': 'none' , 'width': '5%', 'text-align':'center'}" field="dateCreated" header="Date" [sortable]="true">
+            <ng-template let-row="rowData" pTemplate="body">
+                        <span >{{row.dateCreated | date: 'dd-MMM-yyyy' }}</span>
+            </ng-template>
+        </p-column>
+        <p-column [style]="{'text-decoration': 'none' , 'width': '8%' , 'text-align':'center'}" field="purchasePrice" header="Purchase Price" [sortable]="true">
+            <ng-template let-row="rowData" pTemplate="body">
+                        <span >R {{row.purchasePrice }}</span>
+            </ng-template>
+        </p-column>
+        <p-column [style]="{'text-decoration': 'none' , 'width': '8%' , 'text-align':'center'}" field="amountPaid" header="Amount Paid" [sortable]="true">
+            <ng-template let-row="rowData" pTemplate="body">
+                <span >R {{row.amountPaid }}</span>
+    </ng-template>
+        </p-column>
+        <p-column [style]="{'text-decoration': 'none' , 'width': '27%'}" field="note" header="Notes" [sortable]="true"></p-column>
+        
 
-    <p-column [style]="{'text-decoration': 'none' , 'width': '7%'}" styleClass="col-button" header="Action">
-        <ng-template let-row="rowData" pTemplate="body">
-            <a routerLink="/order/{{row.id}}"><i class="fa fa-edit" title="Update">Edit</i></a>
-        </ng-template>
-    </p-column>
-</p-dataTable>
+        <p-column [style]="{'text-decoration': 'none' , 'width': '7%'}" styleClass="col-button" header="Action">
+            <ng-template let-row="rowData" pTemplate="body">
+                <a routerLink="/order/{{row.id}}"><i class="fa fa-edit" title="Update">Edit</i></a>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
 </div>
+
 
 
 

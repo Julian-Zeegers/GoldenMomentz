@@ -16,14 +16,17 @@ export class DiaryComponent implements OnInit {
   collections: CollectionModel[] = [];
   selectedCollections: CollectionModel[] = [];
   date = new Date()
+  orders: OrderModel[] = [];
 
   
   constructor(private service: CustomerService, 
               private collection_service: CollectionService,
+              private order_service: OrderService,
               private router: Router,) { }
 
   ngOnInit() {
     this.getAll();
+    this.getAllOrders();
     
   }
 
@@ -31,6 +34,13 @@ export class DiaryComponent implements OnInit {
     this.collection_service.getAll()
       .subscribe(result => {
         return this.collections = result
+      });
+  }
+
+  getAllOrders(){
+    this.order_service.getAll()
+      .subscribe(result => {
+        return this.orders = result
       });
   }
   
@@ -66,5 +76,38 @@ export class DiaryComponent implements OnInit {
   payCollection(){
     
   }
+
+  getAmountPaid(orderID: number): number{
+    var amountPaid = 0;
+    this.collections.forEach(collection => {
+        if(collection.orderId == orderID && collection.paid == true)
+        {
+          amountPaid += collection.amount;
+        }
+      
+    });
+    return amountPaid;
+  }
+
+  getPurchasePrice(orderID: number): number{
+
+    var purchasePrice = 0;
+    this.orders.forEach(order => {
+        if(order.id == orderID)
+        {
+          purchasePrice= order.purchasePrice - order.deposit;
+        }
+      
+    });
+    return purchasePrice;
+
+  }
+
+  getBalance(orderID: number): number{
+    console.log("HI");
+    return  this.getPurchasePrice(orderID) - this.getAmountPaid(orderID);
+  }
+
+
 
 }

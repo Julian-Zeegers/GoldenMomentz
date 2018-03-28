@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { OrderService, CollectionService} from '../../../services';
 import { OrderModel , CollectionModel} from '../../../models';
 import { Router } from '@angular/router';
@@ -9,10 +9,11 @@ import { DataTableModule, SharedModule, TabViewModule } from 'primeng/primeng';
   templateUrl: './order-list.component.html',
   styleUrls: []
 })
-export class OrderListComponent implements OnInit {
+export class OrderListComponent implements OnInit{
   updateOrder = new OrderModel();
   orders: OrderModel[] = [];
   collections: CollectionModel[] = [];
+  loaded: boolean = false;
   
   
   constructor(private service: OrderService, 
@@ -22,17 +23,18 @@ export class OrderListComponent implements OnInit {
   isDataAvailable:boolean = false;
 
   ngOnInit() {
-    this.getAllCollections();
-      this.getAll();
+      this.getAllCollections();
+      //this.getAll();
+      
   }
 
+
   getAll(){
-    
+
     this.service.getAll()
       .subscribe(result => {
-        
-        this.orders = result;
-        this.getAmountPaid();
+        this.orders = this.getAmountPaid(result);
+        this.loaded = true;
         return this.orders;
       });
   }
@@ -40,7 +42,9 @@ export class OrderListComponent implements OnInit {
   getAllCollections(){
     this.service_collection.getAll()
       .subscribe(result => {
-        return this.collections = result;
+        this.collections = result;
+        this.getAll();
+        return this.collections;
       });
   }
   
@@ -55,11 +59,11 @@ export class OrderListComponent implements OnInit {
     this.router.navigate(['/customers', customer.id]);
   }
 
-  getAmountPaid(){
-    this.orders.forEach(element => {
+  getAmountPaid(orderArray: OrderModel[]): OrderModel[]{
+    orderArray.forEach(element => {
       element.amountPaid = this.addAmountPaid(element.id);
     });
-    this.isDataAvailable = true;
+    return orderArray;
     
   }
 

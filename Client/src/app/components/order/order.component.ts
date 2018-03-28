@@ -160,13 +160,15 @@ export class OrderComponent implements OnInit {
       newCol.collectionDate.setHours(newCol.collectionDate.getHours() + 2);
       this.collection_service.put(newCol)
       .subscribe(result => {
+
         this.toastr.success("Successfully collection dates added", 'Success');
+        this.router.navigate(['/orders']);
       }, err => {
         this.toastr.error('Could not process request', 'An error occurred');
         this.cancel();
       });
     });
-    this.router.navigate(['/orders']);
+   
 
   }
 
